@@ -62,7 +62,7 @@ void LED::amount(unsigned char a)
 	number = a;
 }
 
-void LED::color(unsigned char r, unsigned char g, unsigned char b)
+void LED::color(unsigned char r, unsigned char g, unsigned char b, unsigned char power)
 {
 	//start bit
 	SPI_masterTransmitByte(0);
@@ -73,7 +73,7 @@ void LED::color(unsigned char r, unsigned char g, unsigned char b)
 	for (int i = 1; i <= number; i++)
 	{
 		//led frame
-		SPI_masterTransmitByte(255);
+		SPI_masterTransmitByte(power);
 		SPI_masterTransmitByte(b);
 		SPI_masterTransmitByte(g);
 		SPI_masterTransmitByte(r);
@@ -83,12 +83,14 @@ void LED::color(unsigned char r, unsigned char g, unsigned char b)
 	SPI_masterTransmitByte(255);
 	SPI_masterTransmitByte(255);
 	SPI_masterTransmitByte(255);
+	//SPI_masterTransmitByte(255);
 	
+	_delay_ms(1000);
 	
 	
 }
 
-void LED::mix(unsigned char fb, unsigned char fg, unsigned char fr, unsigned char sb, unsigned char sg, unsigned char sr)
+void LED::mix(unsigned char power,unsigned char fb, unsigned char fg, unsigned char fr, unsigned char sb, unsigned char sg, unsigned char sr)
 {
 	//start bit
 	SPI_masterTransmitByte(0);
@@ -99,13 +101,13 @@ void LED::mix(unsigned char fb, unsigned char fg, unsigned char fr, unsigned cha
 	for (int i = 1; i <= number; i++)
 	{
 		if (i % 2 == 0){
-			SPI_masterTransmitByte(255);
+			SPI_masterTransmitByte(power);
 			SPI_masterTransmitByte(fb);
 			SPI_masterTransmitByte(fg);
 			SPI_masterTransmitByte(fr);
 		}
 		else {
-			SPI_masterTransmitByte(255);
+			SPI_masterTransmitByte(power);
 			SPI_masterTransmitByte(sb);
 			SPI_masterTransmitByte(sg);
 			SPI_masterTransmitByte(sr);
@@ -120,7 +122,7 @@ void LED::mix(unsigned char fb, unsigned char fg, unsigned char fr, unsigned cha
 	
 }
 
-void LED::snail(unsigned char r, unsigned char g, unsigned char b)
+void LED::snail(unsigned char r, unsigned char g, unsigned char b, unsigned char power)
 {
 	
 	
@@ -135,11 +137,11 @@ void LED::snail(unsigned char r, unsigned char g, unsigned char b)
 		for (int i = 1; i <= number; i++)
 		{
 			//led frame
-			SPI_masterTransmitByte(255);
+			SPI_masterTransmitByte(power);
 			SPI_masterTransmitByte(b);
 			SPI_masterTransmitByte(g);
 			SPI_masterTransmitByte(r);
-			_delay_ms(1);
+			_delay_ms(10);
 			
 		}
 		// end bits
@@ -164,7 +166,7 @@ void LED::snail(unsigned char r, unsigned char g, unsigned char b)
 			SPI_masterTransmitByte(0);
 			SPI_masterTransmitByte(0);
 			SPI_masterTransmitByte(0);
-			_delay_ms(1);
+			_delay_ms(10);
 			
 		}
 		// end bits
@@ -184,7 +186,7 @@ void LED::snail(unsigned char r, unsigned char g, unsigned char b)
 	}
 }
 
-void LED::random_colours()
+void LED::random_colours(unsigned char power)
 {
 	//start bit
 	SPI_masterTransmitByte(0);
@@ -198,16 +200,16 @@ void LED::random_colours()
 		random_g = (rand()% 255) + 1;
 		random_r = (rand()% 255) + 1;
 		
-		SPI_masterTransmitByte(255);
+		SPI_masterTransmitByte(power);
 		SPI_masterTransmitByte(random_b);
 		SPI_masterTransmitByte(random_g);
 		SPI_masterTransmitByte(random_r);
+		_delay_ms(100);
 	}
 	// end bits
-	SPI_masterTransmitByte(255);
-	SPI_masterTransmitByte(255);
-	SPI_masterTransmitByte(255);
 	
-	_delay_ms(20);
+	SPI_masterTransmitByte(255);
+	SPI_masterTransmitByte(255);
+	SPI_masterTransmitByte(255);
 	
 }
