@@ -45,14 +45,12 @@ int main(void)
 	
 	while(1)
 	{
-		led.amount(30); //choose amount
-		//led.color(235, 0, 0); //pick color of leds
-		//led.blink(10); // blink and pick time
-		//led.snail(255, 0, 255); // snail motion . pick color
-		//led.mix(0,153,76,204,0,0); //choose 2 own colors to change
-		led.random_colours(); //random colours
+		led.amount(40); //choose amount
+		//led.color(235, 29, 0,230); //pick color of leds
+		//led.blink(1000); // blink and pick time
+		led.snail(255, 0, 255,225); // snail motion . pick color
+		//led.mix(225,0,153,76,204,0,0); //choose 2 own colors to change
+		//led.random_colours(225); //random colours
 	}
 	
 }
-
-
