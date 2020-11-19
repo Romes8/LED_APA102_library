@@ -28,12 +28,12 @@ class LED
 	int random_g;
 	int random_r;
 	public:
-	void color(unsigned char r, unsigned char g, unsigned char b);
+	void color(unsigned char r, unsigned char g, unsigned char b , unsigned char power);
 	void blink(unsigned char m);
 	void amount(unsigned char a);
-	void snail(unsigned char r, unsigned char g, unsigned char b);
-	void mix(unsigned char fb, unsigned char fg, unsigned char fr, unsigned char sb, unsigned char sg, unsigned char sr);
-	void random_colours();
+	void snail(unsigned char r, unsigned char g, unsigned char b , unsigned char power);
+	void mix(unsigned char power ,unsigned char fb, unsigned char fg, unsigned char fr, unsigned char sb, unsigned char sg, unsigned char sr);
+	void random_colours(unsigned char power);
 	
 };
 
